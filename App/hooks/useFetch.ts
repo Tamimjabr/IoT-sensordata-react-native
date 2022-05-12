@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Alert } from 'react-native';
 
 export enum ResponseType {
@@ -11,7 +11,7 @@ const useFetch = (url: string, resType: ResponseType = ResponseType.JSON) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  const getImage = useCallback(() => {
     setLoading(true)
     setData(null);
     setError(null);
@@ -52,10 +52,18 @@ const useFetch = (url: string, resType: ResponseType = ResponseType.JSON) => {
     }
 
     fetchData()
-  }, [url])
+  }, [])
 
 
-  return { data, loading, error }
+  useEffect(() => {
+    const fetchData = async () => {
+      await getImage()
+    }
+
+    fetchData()
+  }, [getImage])
+
+  return { data, loading, error, getImage }
 }
 
 export default useFetch;
