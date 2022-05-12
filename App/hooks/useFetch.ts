@@ -17,10 +17,8 @@ const useFetch = (url: string, resType: ResponseType = ResponseType.JSON) => {
     setError(null);
 
     const fetchData = async () => {
-
       try {
         const response = await fetch(url)
-
         let obj: any = {}
 
         if (resType === ResponseType.BLOB) {
@@ -36,15 +34,18 @@ const useFetch = (url: string, resType: ResponseType = ResponseType.JSON) => {
             obj = base64data
             setData(obj)
           }
-          
         } else {
           obj = await response.json()
           setData(obj)
         }
-
-      } catch (error) {
-        console.log('error', error)
-        Alert.alert('Error', 'Something went wrong')
+      } catch (error: any) {
+        let message
+        if (resType === ResponseType.BLOB) {
+          message = `${error.message}. Unable to connect to camera`
+        } else {
+          message = `Something went wrong. Please try again later`
+        }
+        Alert.alert('Error', message)
       } finally {
         setLoading(false)
       }
