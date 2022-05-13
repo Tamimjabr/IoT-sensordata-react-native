@@ -7,10 +7,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Camera from '../screens/Camera';
 import colors from '../constants/colors';
-import { StatusBar } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
+const styles = StyleSheet.create({
+  focusedIcon: { backgroundColor: colors.white, bottom: 8, padding: 10, borderRadius: 20 }
+})
 
 const MyTabs = () => {
   return (
@@ -18,16 +21,16 @@ const MyTabs = () => {
       backgroundColor: colors.dark
     }} screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
-        let iconSize = focused ? 32 : 24
-        let iconColor = focused ? colors.blue : colors.gray
+        let iconSize = focused ? 28 : 24
+        let iconColor = focused ? colors.blue : colors.dark
 
         switch (route.name) {
           case 'Camera':
-            return <Entypo name="camera" size={iconSize} color={iconColor} />
+            return <Entypo name="camera" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
           case 'Settings':
-            return <Ionicons name="settings" size={iconSize} color={iconColor} />
+            return <Ionicons name="settings" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
           case 'Motion Sensor':
-            return <MaterialCommunityIcons name="motion-sensor" size={iconSize} color={iconColor} />
+            return <MaterialCommunityIcons name="motion-sensor" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
         }
       },
       tabBarShowLabel: false,
@@ -35,19 +38,28 @@ const MyTabs = () => {
         backgroundColor: colors.dark,
         borderTopColor: 'transparent',
       },
+      tabBarActiveBackgroundColor: colors.white,
+      tabBarInactiveBackgroundColor: colors.gray,
       headerTitleAlign: 'center',
       headerStyle: {
         backgroundColor: colors.dark,
-
       },
       headerTitleStyle: {
-        color: colors.gray,
+        color: colors.white,
       }
     })
     } >
-      <Tab.Screen name="Camera" component={Camera} />
+      <Tab.Screen name="Camera" component={Camera} options={({ route }) => ({
+        tabBarItemStyle: {
+          borderTopLeftRadius: 20,
+        }
+      })} />
       <Tab.Screen name="Motion Sensor" component={MotionSensorData} />
-      <Tab.Screen name="Settings" component={Settings} />
+      <Tab.Screen name="Settings" component={Settings} options={{
+        tabBarItemStyle: {
+          borderTopRightRadius: 20,
+        }
+      }} />
     </Tab.Navigator >
   );
 }
