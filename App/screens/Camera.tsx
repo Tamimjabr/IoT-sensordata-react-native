@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Image, StyleSheet, Dimensions, Button, ScrollView, RefreshControl, Text } from 'react-native'
+import { View, Image, StyleSheet, Dimensions, ScrollView, RefreshControl, Text } from 'react-native'
+import Button from '../components/Button'
 import colors from '../constants/colors'
 import { GlobalStateContext } from '../global-state/GlobalState'
 import useFetch, { ResponseType } from '../hooks/useFetch'
-
+import { FontAwesome } from '@expo/vector-icons';
 
 const screenHeight = Dimensions.get('window').height
 
@@ -19,7 +20,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: screenHeight * 0.5,
     justifyContent: 'center',
-  },
+  }, buttonContainer: {
+    flexDirection: 'row',
+    marginVertical: 10,
+  }
 })
 
 const Camera = () => {
@@ -42,7 +46,10 @@ const Camera = () => {
       <Text style={styles.text}>Image resolution: {imgResolution}</Text>
       {loading && <View style={[styles.img, { backgroundColor: '#D1D1D1' }]}></View>}
       {data && <Image source={{ uri: data }} style={styles.img} resizeMode='contain' />}
-      <Button title='Refresh' onPress={onRefresh} />
+      <View style={styles.buttonContainer}>
+        <Button text='Refresh' onPress={onRefresh} buttonIcon={(<FontAwesome name="refresh" size={24} color={colors.dark} />)} />
+        <Button text='Upload' onPress={onRefresh} buttonIcon={(<FontAwesome name="cloud-upload" size={24} color={colors.dark} />)} />
+      </View>
     </ScrollView>
   )
 }
