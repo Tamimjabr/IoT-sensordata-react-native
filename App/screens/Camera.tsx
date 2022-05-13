@@ -1,11 +1,10 @@
 import React from 'react'
 import { View, Image, StyleSheet, Dimensions, ScrollView, RefreshControl, Text } from 'react-native'
-import Button from '../components/Button'
-import colors from '../constants/colors'
 import { GlobalStateContext } from '../global-state/GlobalState'
-
 import { FontAwesome } from '@expo/vector-icons';
 import useFetchBlob from '../hooks/useFetchBlob'
+import Button from '../components/Button'
+import colors from '../constants/colors'
 
 const screenHeight = Dimensions.get('window').height
 

@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 
 
 const useFetchBlob = (url: string) => {
-  const [data, setData] = React.useState<any>();
+  const [data, setData] = React.useState<string | ArrayBuffer | null>();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 

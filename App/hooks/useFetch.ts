@@ -1,16 +1,13 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Alert } from 'react-native';
 
-export enum ResponseType {
-  BLOB, JSON
-}
 
-const useFetch = (url: string, resType: ResponseType = ResponseType.JSON) => {
-  const [data, setData] = useState<any>();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+const useFetch = (url: string) => {
+  const [data, setData] = React.useState<any>();
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
-  const getImage = useCallback(() => {
+  const getData = React.useCallback(() => {
     setLoading(true)
     setData(null);
     setError(null);
@@ -18,34 +15,10 @@ const useFetch = (url: string, resType: ResponseType = ResponseType.JSON) => {
     const fetchData = async () => {
       try {
         const response = await fetch(url)
-        let obj: any = {}
-
-        if (resType === ResponseType.BLOB) {
-          // source:https://stackoverflow.com/questions/65216756/react-native-android-create-url-createobjecturlblob
-          let blob = await response.blob()
-          blob = new Blob([blob], {
-            type: "text/vtt; charset=utf-8"
-          });
-
-          const fileReaderInstance = new FileReader();
-          fileReaderInstance.readAsDataURL(blob);
-          fileReaderInstance.onload = () => {
-            const base64data = fileReaderInstance.result;
-            obj = base64data
-            setData(obj)
-          }
-        } else {
-          obj = await response.json()
-          setData(obj)
-        }
+        const data = await response.json()
+        setData(data)
       } catch (error: any) {
-        let message
-        if (resType === ResponseType.BLOB) {
-          message = `${error.message}. Unable to connect to camera`
-        } else {
-          message = `Something went wrong. Please try again later`
-        }
-        Alert.alert('Error', message)
+        Alert.alert('Error', `Something went wrong. Please try again later`)
       } finally {
         setLoading(false)
       }
@@ -55,15 +28,15 @@ const useFetch = (url: string, resType: ResponseType = ResponseType.JSON) => {
   }, [])
 
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchData = async () => {
-      await getImage()
+      await getData()
     }
 
     fetchData()
-  }, [getImage])
+  }, [getData])
 
-  return { data, loading, error, getImage }
+  return { data, loading, error, getData }
 }
 
 export default useFetch;
