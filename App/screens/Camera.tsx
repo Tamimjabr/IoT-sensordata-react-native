@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Image, StyleSheet, Dimensions, Button, ScrollView, RefreshControl } from 'react-native'
+import { GlobalStateContext } from '../global-state/GlobalState'
 import useFetch, { ResponseType } from '../hooks/useFetch'
 
 
@@ -14,11 +15,12 @@ const styles = StyleSheet.create({
   },
 })
 
-
 const Camera = () => {
-  const { data, getImage, loading } = useFetch('http://192.168.0.14/cam-high.jpg', ResponseType.BLOB)
+  // GLOBAL STATE
+  const { imgResolution } = React.useContext(GlobalStateContext)
+  const { data, getImage, loading } = useFetch(`http://192.168.0.14/cam-${imgResolution}.jpg`, ResponseType.BLOB)
 
-
+  console.log('imgResolution', imgResolution)
   const onRefresh = async () => {
     await getImage()
   }

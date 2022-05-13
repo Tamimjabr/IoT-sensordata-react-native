@@ -5,7 +5,6 @@ export enum ResponseType {
   BLOB, JSON
 }
 
-
 const useFetch = (url: string, resType: ResponseType = ResponseType.JSON) => {
   const [data, setData] = useState<any>();
   const [loading, setLoading] = useState(false);
@@ -27,6 +26,7 @@ const useFetch = (url: string, resType: ResponseType = ResponseType.JSON) => {
           blob = new Blob([blob], {
             type: "text/vtt; charset=utf-8"
           });
+
           const fileReaderInstance = new FileReader();
           fileReaderInstance.readAsDataURL(blob);
           fileReaderInstance.onload = () => {
