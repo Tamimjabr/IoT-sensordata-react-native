@@ -1,10 +1,10 @@
 import React from 'react'
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     marginTop: '50%',
     backgroundColor: "white",
     borderTopLeftRadius: 20,
@@ -25,15 +25,15 @@ const styles = StyleSheet.create({
   },
   buttonClose: {
     backgroundColor: "#2196F3",
+    marginBottom: 10
   },
   textStyle: {
     color: "white",
     fontWeight: "bold",
     textAlign: "center"
   },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
+  contentContainer: {
+    marginTop: 20
   }
 });
 
@@ -48,12 +48,14 @@ const ImageResolutionModal = ({ modalVisible, onClose, content }: any) => {
       }}
     >
       <View style={styles.centeredView}>
-        {content}
+        <View style={styles.contentContainer}>
+          {content}
+        </View>
         <Pressable
           style={[styles.button, styles.buttonClose]}
           onPress={() => onClose(!modalVisible)}
         >
-          <Text style={styles.textStyle}>Hide Modal</Text>
+          <Text style={styles.textStyle}>Hide</Text>
         </Pressable>
       </View>
     </Modal>

@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export const RowItem = ({ title, rightIcon, onPress }: { title: string, rightIcon: React.ReactElement, onPress: () => void }) => {
+export const RowItem = ({ title, rightIcon, onPress, textStyle }: { title: string, rightIcon?: React.ReactElement, onPress: () => void, textStyle?: { [key: string]: string | number } }) => {
   return (
     <TouchableOpacity style={styles.row} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={[styles.text, textStyle]}>{title}</Text>
       {rightIcon}
     </TouchableOpacity>
   )
