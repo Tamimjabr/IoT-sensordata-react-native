@@ -13,7 +13,7 @@ const initialState: State = {
 
 export const GlobalStateContext = React.createContext(initialState)
 
-const GlobalState = ({ children }: any) => {
+const GlobalState = ({ children }: { children: React.ReactNode }) => {
   const [imgResolution, setImgResolution] = useState(initialState.imgResolution)
 
   const state: State = {
