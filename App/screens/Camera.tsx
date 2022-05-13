@@ -3,8 +3,9 @@ import { View, Image, StyleSheet, Dimensions, ScrollView, RefreshControl, Text }
 import Button from '../components/Button'
 import colors from '../constants/colors'
 import { GlobalStateContext } from '../global-state/GlobalState'
-import useFetch, { ResponseType } from '../hooks/useFetch'
+
 import { FontAwesome } from '@expo/vector-icons';
+import useFetchBlob from '../hooks/useFetchBlob'
 
 const screenHeight = Dimensions.get('window').height
 
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
 const Camera = () => {
   // GLOBAL STATE
   const { imgResolution } = React.useContext(GlobalStateContext)
-  const { data, getImage, loading } = useFetch(`http://192.168.0.14/cam-${imgResolution}.jpg`, ResponseType.BLOB)
+  const { data, getImage, loading } = useFetchBlob(`http://192.168.0.14/cam-${imgResolution}.jpg`)
 
   console.log('imgResolution', imgResolution)
   const onRefresh = async () => {
