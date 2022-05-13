@@ -39,7 +39,7 @@ const MyTabs = () => {
         borderTopColor: 'transparent',
       },
       tabBarActiveBackgroundColor: colors.white,
-      tabBarInactiveBackgroundColor: colors.gray,
+      tabBarInactiveBackgroundColor: colors.inActiveWhite,
       headerTitleAlign: 'center',
       headerStyle: {
         backgroundColor: colors.dark,
