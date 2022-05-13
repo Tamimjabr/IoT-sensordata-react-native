@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Image, StyleSheet, Dimensions, Button, ScrollView, RefreshControl } from 'react-native'
+import { View, Image, StyleSheet, Dimensions, Button, ScrollView, RefreshControl, Text } from 'react-native'
+import colors from '../constants/colors'
 import { GlobalStateContext } from '../global-state/GlobalState'
 import useFetch, { ResponseType } from '../hooks/useFetch'
 
@@ -7,11 +8,17 @@ import useFetch, { ResponseType } from '../hooks/useFetch'
 const screenHeight = Dimensions.get('window').height
 
 const styles = StyleSheet.create({
+  text: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 10,
+    marginVertical: 5,
+  },
   img: {
     width: '100%',
     height: screenHeight * 0.5,
     justifyContent: 'center',
-
   },
 })
 
@@ -32,6 +39,7 @@ const Camera = () => {
         onRefresh={onRefresh}
       />
     } >
+      <Text style={styles.text}>Image resolution: {imgResolution}</Text>
       {loading && <View style={[styles.img, { backgroundColor: '#D1D1D1' }]}></View>}
       {data && <Image source={{ uri: data }} style={styles.img} resizeMode='contain' />}
       <Button title='Refresh' onPress={onRefresh} />
