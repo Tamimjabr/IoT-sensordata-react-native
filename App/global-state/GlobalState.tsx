@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
+import { Resolution } from '../types/img-resolutions'
 
 interface State {
-  imgResolution: string
-  setImgResolution: (value: string) => void,
+  imgResolution: Resolution
+  setImgResolution: (value: Resolution) => void,
 }
 
 const initialState: State = {
-  imgResolution: 'high',
-  setImgResolution: (value: string) => undefined
+  imgResolution: Resolution.HIGH,
+  setImgResolution: (value: Resolution) => undefined
 }
 
 export const GlobalStateContext = React.createContext(initialState)
