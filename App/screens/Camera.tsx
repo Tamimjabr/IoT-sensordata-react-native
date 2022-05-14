@@ -33,7 +33,7 @@ const Camera = () => {
 
   console.log('imgResolution', imgResolution)
   const onRefresh = async () => {
-    await getImage()
+    await getImage(`http://192.168.0.14/cam-${imgResolution}.jpg`)
   }
 
   return (

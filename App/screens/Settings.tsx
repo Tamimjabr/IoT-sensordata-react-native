@@ -3,8 +3,8 @@ import { Text, View, SafeAreaView, FlatList, StyleSheet, StatusBar } from 'react
 import { RowDivider, RowItem } from '../components/RowItem';
 import { Entypo } from '@expo/vector-icons';
 import colors from '../constants/colors';
-import ImageResolutionModal from '../components/ImageResolutionModal';
 import ImageResolutionList from '../components/ImageResolutionList';
+import SettingModal from '../components/SettingModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,14 +28,14 @@ const Settings = () => {
 
   const settings = [{
     title: <RowItem title={'Image Quality'} onPress={() => setImageResolutionModalVisible(true)} rightIcon={<Entypo name="chevron-small-right" size={24} color={colors.white} />} />,
-    Modal: <ImageResolutionModal
+    Modal: <SettingModal
       modalVisible={imageResolutionModalVisible}
       onClose={(modalVisible: boolean) => setImageResolutionModalVisible(modalVisible)}
       content={<ImageResolutionList closeOnChangedQuality={() => setImageResolutionModalVisible(false)} />}
     />
   }, {
     title: <RowItem title={'About'} onPress={() => setAboutModalVisible(true)} rightIcon={<Entypo name="chevron-small-right" size={24} color={colors.white} />} />,
-    Modal: <ImageResolutionModal
+    Modal: <SettingModal
       modalVisible={aboutModalVisible}
       onClose={(modalVisible: boolean) => setAboutModalVisible(modalVisible)}
       content={<Text style={styles.textStyle}>IoT Project</Text>}

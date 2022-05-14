@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const ImageResolutionModal = ({ modalVisible, onClose, content }: any) => {
+const SettingModal = ({ modalVisible, onClose, content }: any) => {
   return (
     <Modal
       animationType="slide"
@@ -62,4 +62,4 @@ const ImageResolutionModal = ({ modalVisible, onClose, content }: any) => {
   )
 }
 
-export default ImageResolutionModal
+export default SettingModal

@@ -5,7 +5,7 @@ import { Resolution } from '../types/img-resolutions'
 import { RowDivider, RowItem } from './RowItem'
 
 
-const ImageResolutionList = ({ closeOnChangedQuality }: any) => {
+const ImageResolutionList = ({ closeOnChangedQuality }: { closeOnChangedQuality: () => void }) => {
   // GLOBAL STATE
   const { setImgResolution } = React.useContext(GlobalStateContext)
 

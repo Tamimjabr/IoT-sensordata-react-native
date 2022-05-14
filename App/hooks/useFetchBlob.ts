@@ -7,14 +7,14 @@ const useFetchBlob = (url: string) => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
-  const getImage = React.useCallback(() => {
+  const getImage = React.useCallback((imgUrl) => {
     setLoading(true)
     setData(undefined);
     setError(null);
 
     const fetchData = async () => {
       try {
-        const response = await fetch(url)
+        const response = await fetch(imgUrl)
         // source:https://stackoverflow.com/questions/65216756/react-native-android-create-url-createobjecturlblob
         let blob = await response.blob()
         blob = new Blob([blob], {
@@ -40,7 +40,7 @@ const useFetchBlob = (url: string) => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await getImage()
+      await getImage(url)
     }
 
     fetchData()
