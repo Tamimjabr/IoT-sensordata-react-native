@@ -5,6 +5,7 @@ import { Entypo } from '@expo/vector-icons';
 import colors from '../constants/colors';
 import ImageResolutionList from '../components/ImageResolutionList';
 import SettingModal from '../components/SettingModal';
+import CameraIPAddress from '../components/CameraIPAddress';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +25,7 @@ const styles = StyleSheet.create({
 
 const Settings = () => {
   const [imageResolutionModalVisible, setImageResolutionModalVisible] = React.useState(false);
+  const [cameraIPAddressModalVisible, setCameraIPAddressModalVisible] = React.useState(false);
   const [aboutModalVisible, setAboutModalVisible] = React.useState(false);
 
   const settings = [{
@@ -32,6 +34,14 @@ const Settings = () => {
       modalVisible={imageResolutionModalVisible}
       onClose={(modalVisible: boolean) => setImageResolutionModalVisible(modalVisible)}
       content={<ImageResolutionList closeOnChangedQuality={() => setImageResolutionModalVisible(false)} />}
+    />
+  },
+  {
+    title: <RowItem title={'Camera IP Address'} onPress={() => setCameraIPAddressModalVisible(true)} rightIcon={<Entypo name="chevron-small-right" size={24} color={colors.white} />} />,
+    Modal: <SettingModal
+      modalVisible={cameraIPAddressModalVisible}
+      onClose={(modalVisible: boolean) => setCameraIPAddressModalVisible(modalVisible)}
+      content={<CameraIPAddress />}
     />
   }, {
     title: <RowItem title={'About'} onPress={() => setAboutModalVisible(true)} rightIcon={<Entypo name="chevron-small-right" size={24} color={colors.white} />} />,
