@@ -4,7 +4,8 @@ import colors from '../constants/colors'
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.blue,
+
     flexDirection: 'row',
     padding: 10,
     borderRadius: 5,
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     marginLeft: 10,
+    color: colors.white,
   }
 })
 

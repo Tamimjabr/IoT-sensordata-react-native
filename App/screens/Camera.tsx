@@ -10,11 +10,16 @@ const screenHeight = Dimensions.get('window').height
 
 const styles = StyleSheet.create({
   text: {
-    color: colors.white,
+    backgroundColor: colors.white,
+    color: colors.blue,
+    textAlign: 'center',
     fontSize: 16,
     fontWeight: 'bold',
-    marginLeft: 10,
-    marginVertical: 5,
+    marginVertical: 10,
+    borderRadius: 10,
+    padding: 10,
+    width: '50%',
+    alignSelf: 'center'
   },
   img: {
     width: '100%',
@@ -47,8 +52,8 @@ const Camera = () => {
       {loading && <View style={[styles.img, { backgroundColor: '#D1D1D1' }]}></View>}
       {data && <Image source={{ uri: data }} style={styles.img} resizeMode='contain' />}
       <View style={styles.buttonContainer}>
-        <Button text='Refresh' onPress={onRefresh} buttonIcon={(<FontAwesome name="refresh" size={24} color={colors.dark} />)} />
-        <Button text='Upload' onPress={onRefresh} buttonIcon={(<FontAwesome name="cloud-upload" size={24} color={colors.dark} />)} />
+        <Button text='Refresh' onPress={onRefresh} buttonIcon={(<FontAwesome name="refresh" size={24} color={colors.white} />)} />
+        <Button text='Upload' onPress={onRefresh} buttonIcon={(<FontAwesome name="cloud-upload" size={24} color={colors.white} />)} />
       </View>
     </ScrollView>
   )

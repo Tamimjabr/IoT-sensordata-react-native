@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import colors from '../constants/colors';
 
 const styles = StyleSheet.create({
   centeredView: {
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     elevation: 2
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: colors.blue,
     marginBottom: 10
   },
   textStyle: {
