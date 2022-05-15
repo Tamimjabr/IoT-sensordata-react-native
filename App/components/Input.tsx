@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: colors.blue,
+    color: colors.white,
     fontWeight: '700'
   },
   input: {
@@ -31,12 +31,13 @@ const styles = StyleSheet.create({
     color: colors.dark
   },
   button: {
+    width: '40%',
     padding: 15,
-    borderRightColor: colors.dark,
-    borderRightWidth: StyleSheet.hairlineWidth,
-    backgroundColor: colors.white,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10
+    borderLeftColor: colors.dark,
+    borderLeftWidth: StyleSheet.hairlineWidth,
+    backgroundColor: colors.blue,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
   }
 })
 
