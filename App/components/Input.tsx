@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   containerDisabled: {
-    backgroundColor: colors.white
+    backgroundColor: colors.gray
   },
   text: {
     fontSize: 18,
@@ -38,6 +38,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.blue,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
+  }, buttonDisabled: {
+    backgroundColor: colors.gray,
+  }, darkText: {
+    color: colors.dark
   }
 })
 
@@ -50,8 +54,12 @@ const Input = ({
   editable = true
 }: { text: string, value: string, onButtonPress?: () => void, keyboardType: any, onChangeText?: () => void, editable?: boolean }) => {
   const containerStyles: any = [styles.container]
+  const buttonStyle: any = [styles.button]
+  const darkText: any = [styles.text]
   if (!editable) {
     containerStyles.push(styles.containerDisabled)
+    buttonStyle.push(styles.buttonDisabled)
+    darkText.push(styles.darkText)
   }
 
   return (
@@ -63,8 +71,8 @@ const Input = ({
         onChangeText={onChangeText}
         editable={editable}
       />
-      <TouchableOpacity onPress={onButtonPress} style={styles.button}>
-        <Text style={styles.text}>{text}</Text>
+      <TouchableOpacity onPress={onButtonPress} style={buttonStyle}>
+        <Text style={darkText}>{text}</Text>
       </TouchableOpacity>
     </View>
   )
