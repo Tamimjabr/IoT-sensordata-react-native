@@ -54,11 +54,11 @@ const Input = ({
   keyboardType,
   onChangeText,
   editable = true
-}: { text: string, value: string, onButtonPress?: () => void, keyboardType: any, onChangeText?: () => void, editable?: boolean }) => {
+}: { text: string, value: string, onButtonPress?: () => void, keyboardType: any, onChangeText?: (text: string) => void, editable?: boolean }) => {
   const containerStyles: StylesArray = [styles.container]
   const buttonStyle: StylesArray = [styles.button]
   const darkText: StylesArray = [styles.text]
-  
+
   if (!editable) {
     containerStyles.push(styles.containerDisabled)
     buttonStyle.push(styles.buttonDisabled)
@@ -71,10 +71,14 @@ const Input = ({
         value={value}
         style={styles.input}
         keyboardType={keyboardType}
-        onChangeText={onChangeText}
+        onChangeText={(text) => {
+          if (onChangeText) {
+            onChangeText(text)
+          }
+        }}
         editable={editable}
       />
-      <TouchableOpacity onPress={onButtonPress} style={buttonStyle}>
+      <TouchableOpacity onPress={onButtonPress} style={buttonStyle} disabled={!editable}>
         <Text style={darkText}>{text}</Text>
       </TouchableOpacity>
     </View>
