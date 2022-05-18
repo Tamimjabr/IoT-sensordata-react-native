@@ -50,11 +50,14 @@ const Camera = () => {
     } >
       <Text style={styles.text}>Image resolution: {imgResolution}</Text>
       {loading && <View style={[styles.img, { backgroundColor: '#D1D1D1' }]}></View>}
-      {data && <Image source={{ uri: data }} style={styles.img} resizeMode='contain' />}
-      <View style={styles.buttonContainer}>
-        <Button text='Refresh' onPress={onRefresh} buttonIcon={(<FontAwesome name="refresh" size={24} color={colors.white} />)} />
-        <Button text='Upload' onPress={onRefresh} buttonIcon={(<FontAwesome name="cloud-upload" size={24} color={colors.white} />)} />
-      </View>
+      {data && (<>
+        <Image source={{ uri: data }} style={styles.img} resizeMode='contain' />
+        <View style={styles.buttonContainer}>
+          <Button text='Refresh' onPress={onRefresh} buttonIcon={(<FontAwesome name="refresh" size={24} color={colors.white} />)} />
+          <Button text='Upload' onPress={onRefresh} buttonIcon={(<FontAwesome name="cloud-upload" size={24} color={colors.white} />)} />
+        </View>
+      </>)}
+
     </ScrollView>
   )
 }
