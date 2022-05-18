@@ -4,10 +4,9 @@ import Input from './Input'
 import KeyboardSpacer from './KeyboardSpacer'
 
 
-
 const CameraIPAddress = () => {
-
   const [scrollEnabled, setScrollEnabled] = React.useState(false)
+
   return (
     <ScrollView scrollEnabled={scrollEnabled}>
       <Input text='Current IP' value='http://192.168.0.14' keyboardType='numeric' editable={false} />

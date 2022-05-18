@@ -7,6 +7,8 @@ import {
   StyleSheet
 } from 'react-native'
 import colors from '../constants/colors'
+import { StylesArray } from '../types/styles-array'
+
 
 const styles = StyleSheet.create({
   container: {
@@ -53,9 +55,10 @@ const Input = ({
   onChangeText,
   editable = true
 }: { text: string, value: string, onButtonPress?: () => void, keyboardType: any, onChangeText?: () => void, editable?: boolean }) => {
-  const containerStyles: any = [styles.container]
-  const buttonStyle: any = [styles.button]
-  const darkText: any = [styles.text]
+  const containerStyles: StylesArray = [styles.container]
+  const buttonStyle: StylesArray = [styles.button]
+  const darkText: StylesArray = [styles.text]
+  
   if (!editable) {
     containerStyles.push(styles.containerDisabled)
     buttonStyle.push(styles.buttonDisabled)
