@@ -7,6 +7,7 @@ import MotionDiagram from '../components/MotionDiagram'
 import moment from 'moment'
 import { CustomMotion } from '../types/motion'
 import { sortSensorDataLastFirst } from '../utils/merge-sensordata-by-day'
+import { momentDateFormat } from '../constants/moment-format'
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
 })
 
 const MotionSensorData = () => {
-  // todo fetch from own server
   const { data, getData, loading } = useFetch('https://iot-sensordata.herokuapp.com/api/v1/sensors')
   const [customData, setCustomData] = React.useState<any>([])
 
@@ -52,7 +52,7 @@ const MotionSensorData = () => {
           _time: item._time,
           _value: item._value,
           sensor_id: item.sensor_id,
-          date: moment(item._time).format('DD-MM')
+          date: moment(item._time).format(momentDateFormat)
         }
       })
 
