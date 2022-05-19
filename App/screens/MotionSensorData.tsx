@@ -5,6 +5,7 @@ import colors from '../constants/colors'
 import useFetch from '../hooks/useFetch'
 import MotionDiagram from '../components/MotionDiagram'
 import moment from 'moment'
+import { CustomMotion } from '../types/motion'
 
 const styles = StyleSheet.create({
   container: {
@@ -38,7 +39,7 @@ const MotionSensorData = () => {
 
   React.useEffect(() => {
     if (data) {
-      const newData = Array.from(data.data).map((item: any) => {
+      const newData: CustomMotion[] = Array.from(data.data).map((item: any) => {
         return {
           _time: item._time,
           _value: item._value,
@@ -72,7 +73,7 @@ const MotionSensorData = () => {
               />}
               data={data ? data.data : []}
               renderItem={({ item }) => (
-                <RowItem title={`Motion ${item._time}`} onPress={() => undefined} />
+                <RowItem title={`Motion ${moment(item._time).local().format('DD-MM-YYYY hh:mm:ss')}`} onPress={() => undefined} />
               )
               }
               keyExtractor={(item, index) => index.toString()}

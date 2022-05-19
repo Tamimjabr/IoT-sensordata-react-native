@@ -1,14 +1,13 @@
-import moment from 'moment'
 import React from 'react'
 import colors from '../constants/colors'
 import { BarChart, Grid } from 'react-native-svg-charts'
-import { mergeSensorDataByDay } from '../utils/merge-sensordata-by-day'
+import { mergeSensorDataByDay, SensorDataByDay } from '../utils/merge-sensordata-by-day'
 
 const fill = colors.blue
 
 const MotionDiagram = ({ data }: any) => {
   const sensorData = mergeSensorDataByDay(data)
-  const chartData = sensorData.map((item: any) => {
+  const chartData = sensorData.map((item: SensorDataByDay) => {
     return item.numberOfTimes
   })
 
