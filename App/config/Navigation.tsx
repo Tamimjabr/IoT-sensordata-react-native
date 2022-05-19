@@ -8,6 +8,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Camera from '../screens/Camera';
 import colors from '../constants/colors';
 import { StatusBar, StyleSheet } from 'react-native';
+import MotionDiagram from '../screens/MotionDiagram';
+import { AntDesign } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,6 +33,8 @@ const MyTabs = () => {
             return <Ionicons name="settings" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
           case 'Motion Sensor':
             return <MaterialCommunityIcons name="motion-sensor" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
+          case 'Motion Diagram':
+            return <AntDesign name="areachart" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
         }
       },
       tabBarShowLabel: false,
@@ -55,6 +59,7 @@ const MyTabs = () => {
         }
       })} />
       <Tab.Screen name="Motion Sensor" component={MotionSensorData} />
+      <Tab.Screen name="Motion Diagram" component={MotionDiagram} />
       <Tab.Screen name="Settings" component={Settings} options={{
         tabBarItemStyle: {
           borderTopRightRadius: 20,

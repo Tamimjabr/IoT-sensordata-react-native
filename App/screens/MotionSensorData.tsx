@@ -1,8 +1,9 @@
 import React from 'react'
-import { FlatList, RefreshControl, ScrollView, StyleSheet, Text } from 'react-native'
+import { FlatList, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { RowDivider, RowItem } from '../components/RowItem'
 import colors from '../constants/colors'
 import useFetch from '../hooks/useFetch'
+import MotionDiagram from './MotionDiagram'
 
 const styles = StyleSheet.create({
   text: {
@@ -36,19 +37,22 @@ const MotionSensorData = () => {
         />}>
         <Text style={styles.text}>No data</Text>
       </ScrollView> :
-        <FlatList
-          refreshControl={<RefreshControl
-            refreshing={loading}
-            onRefresh={onRefresh}
-          />}
-          data={data ? data.data : []}
-          renderItem={({ item }) => (
-            <RowItem title={`Motion ${item._time}`} onPress={() => undefined} />
-          )
-          }
-          keyExtractor={(item, index) => index.toString()}
-          ItemSeparatorComponent={() => <RowDivider />}
-        />
+        <View>
+          <MotionDiagram />
+          <FlatList
+            refreshControl={<RefreshControl
+              refreshing={loading}
+              onRefresh={onRefresh}
+            />}
+            data={data ? data.data : []}
+            renderItem={({ item }) => (
+              <RowItem title={`Motion ${item._time}`} onPress={() => undefined} />
+            )
+            }
+            keyExtractor={(item, index) => index.toString()}
+            ItemSeparatorComponent={() => <RowDivider />}
+          />
+        </View>
       }
     </>
   )

@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import Navigation from './config/Navigation';
 import { StatusBar } from 'react-native';
 import GlobalState from './global-state/GlobalState';
