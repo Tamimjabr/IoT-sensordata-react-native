@@ -4,5 +4,6 @@ export default {
   dark: '#334257',
   white: '#F5F5F5',
   inActiveWhite: '#EFF0F4',
-  gray: '#DFDFDE'
+  gray: '#DFDFDE',
+  darkGray: '#8E8E8E',
 }

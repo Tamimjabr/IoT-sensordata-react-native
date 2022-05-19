@@ -6,6 +6,7 @@ import useFetch from '../hooks/useFetch'
 import MotionDiagram from '../components/MotionDiagram'
 import moment from 'moment'
 import { CustomMotion } from '../types/motion'
+import { sortSensorDataLastFirst } from '../utils/merge-sensordata-by-day'
 
 const styles = StyleSheet.create({
   container: {
@@ -18,12 +19,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     fontWeight: 'bold',
-    marginVertical: 5,
+    marginVertical: 10,
     borderRadius: 10,
     padding: 10,
     width: '50%',
     alignSelf: 'center'
+  },
+  subText: {
+    color: colors.darkGray,
+    fontSize: 12,
+    fontWeight: 'normal',
   }
+
 })
 
 const MotionSensorData = () => {
@@ -39,7 +46,8 @@ const MotionSensorData = () => {
 
   React.useEffect(() => {
     if (data) {
-      const newData: CustomMotion[] = Array.from(data.data).map((item: any) => {
+      sortSensorDataLastFirst(data.data)
+      let newData: CustomMotion[] = Array.from(data.data).map((item: any) => {
         return {
           _time: item._time,
           _value: item._value,
@@ -62,7 +70,9 @@ const MotionSensorData = () => {
         <Text style={styles.text}>No data</Text>
       </ScrollView> :
         <View style={styles.container}>
-          <Text style={styles.text}>Motions Last 7 Days</Text>
+          <Text style={styles.text}>Motions By Day{"\n"}
+            <Text style={styles.subText}>Last 7 Days</Text>
+          </Text>
           {(data && data.data) && (<MotionDiagram data={customData} />)}
           <Text style={styles.text}> History</Text>
           <View>

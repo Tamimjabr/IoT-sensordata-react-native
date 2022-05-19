@@ -28,3 +28,9 @@ export const mergeSensorDataByDay = (data: CustomMotion[]) => {
     return moment(a.date, 'DD-MM').diff(moment(b.date, 'DD-MM'))
   })
 }
+
+export const sortSensorDataLastFirst= (data: CustomMotion[]) => {
+  return data.sort((a: CustomMotion, b: CustomMotion) => {
+    return moment(b._time).diff(moment(a._time))
+  })
+}
