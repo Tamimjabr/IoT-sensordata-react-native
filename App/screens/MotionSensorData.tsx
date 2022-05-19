@@ -4,6 +4,7 @@ import { RowDivider, RowItem } from '../components/RowItem'
 import colors from '../constants/colors'
 import useFetch from '../hooks/useFetch'
 import MotionDiagram from '../components/MotionDiagram'
+import moment from 'moment'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,11 +27,29 @@ const styles = StyleSheet.create({
 
 const MotionSensorData = () => {
   // todo fetch from own server
-  const { data, getData, loading } = useFetch('http://192.168.0.7:5051/api/v1/sensors')
+  const { data, getData, loading } = useFetch('https://iot-sensordata.herokuapp.com/api/v1/sensors')
+  const [customData, setCustomData] = React.useState<any>([])
+
 
   const onRefresh = async () => {
     await getData()
   }
+
+
+  React.useEffect(() => {
+    if (data) {
+      const newData = Array.from(data.data).map((item: any) => {
+        return {
+          _time: item._time,
+          _value: item._value,
+          sensor_id: item.sensor_id,
+          date: moment(item._time).format('DD-MM')
+        }
+      })
+
+      setCustomData(newData)
+    }
+  }, [data])
 
   return (
     <>
@@ -42,7 +61,8 @@ const MotionSensorData = () => {
         <Text style={styles.text}>No data</Text>
       </ScrollView> :
         <View style={styles.container}>
-          <MotionDiagram />
+          <Text style={styles.text}>Motions Last 7 Days</Text>
+          {(data && data.data) && (<MotionDiagram data={customData} />)}
           <Text style={styles.text}> History</Text>
           <View>
             <FlatList
