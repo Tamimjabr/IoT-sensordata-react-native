@@ -1,8 +1,8 @@
 import React from 'react'
 import colors from '../constants/colors'
-import { BarChart, Grid, LineChart, XAxis, YAxis } from 'react-native-svg-charts'
+import { BarChart, XAxis } from 'react-native-svg-charts'
 import { mergeSensorDataByDay, SensorDataByDay } from '../utils/merge-sensordata-by-day'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
 const fill = colors.blue
 const contentInset = { top: 20, bottom: 20 }
