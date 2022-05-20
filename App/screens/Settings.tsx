@@ -6,6 +6,7 @@ import colors from '../constants/colors';
 import ImageResolutionList from '../components/ImageResolutionList';
 import SettingModal from '../components/SettingModal';
 import CameraIPAddress from '../components/CameraIPAddress';
+import About from '../components/About';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,7 +49,7 @@ const Settings = () => {
     Modal: <SettingModal
       modalVisible={aboutModalVisible}
       onClose={(modalVisible: boolean) => setAboutModalVisible(modalVisible)}
-      content={<Text style={styles.textStyle}>IoT Project</Text>}
+      content={<About />}
     />
   }];
 
