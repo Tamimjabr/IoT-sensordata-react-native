@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { RowDivider, RowItem } from '../components/RowItem'
 import colors from '../constants/colors'
 import useFetch from '../hooks/useFetch'
@@ -30,6 +30,10 @@ const styles = StyleSheet.create({
     color: colors.darkGray,
     fontSize: 12,
     fontWeight: 'normal',
+  }, loader: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 
 })
@@ -61,8 +65,8 @@ const MotionSensorData = () => {
   }, [data])
 
   return (
-    <>
-      {data && data.data.length === 0 ? <ScrollView
+    <>{loading ? <ActivityIndicator size="large" color={colors.blue} style={styles.loader} /> :
+      data && data.data.length === 0 ? <ScrollView
         refreshControl={<RefreshControl
           refreshing={loading}
           onRefresh={onRefresh}
@@ -91,7 +95,7 @@ const MotionSensorData = () => {
             />
           </View>
         </View>
-      }
+    }
     </>
   )
 }
