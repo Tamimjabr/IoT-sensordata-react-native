@@ -16,11 +16,11 @@ const CameraIPAddress = () => {
     <ScrollView scrollEnabled={scrollEnabled}>
       <Input text='Current IP'
         value={cameraIPAddress}
-        keyboardType='numeric'
+        keyboardType='default'
         editable={false} />
       <Input text='Save IP'
         value={enteredIPAddress}
-        keyboardType='numeric'
+        keyboardType='default'
         onChangeText={(value) => setEnteredIPAddress(value)}
         onButtonPress={() => setCameraIPAddress(enteredIPAddress)} />
       <KeyboardSpacer onToggle={(keyboardIsVisible: boolean) => setScrollEnabled(keyboardIsVisible)} />
