@@ -87,7 +87,7 @@ const MotionSensorData = () => {
               />}
               data={data ? data.data : []}
               renderItem={({ item }) => (
-                <RowItem title={`Motion ${moment(item._time).local().format('DD-MM-YYYY hh:mm:ss')}`} onPress={() => undefined} />
+                <RowItem title={`Motion ${moment(item._time).local().format('DD-MM-YYYY HH:mm:ss')}`} onPress={() => undefined} />
               )
               }
               keyExtractor={(item, index) => index.toString()}

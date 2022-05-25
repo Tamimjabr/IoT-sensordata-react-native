@@ -18,38 +18,40 @@ const styles = StyleSheet.create({
 
 const MyTabs = () => {
   return (
-    <Tab.Navigator sceneContainerStyle={{
-      backgroundColor: colors.dark
-    }} screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, color, size }) => {
-        let iconSize = focused ? 28 : 24
-        let iconColor = focused ? colors.blue : colors.dark
+    <Tab.Navigator
+      initialRouteName='Motion Sensor'
+      sceneContainerStyle={{
+        backgroundColor: colors.dark
+      }} screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconSize = focused ? 28 : 24
+          let iconColor = focused ? colors.blue : colors.dark
 
-        switch (route.name) {
-          case 'Camera':
-            return <Entypo name="camera" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
-          case 'Settings':
-            return <Ionicons name="settings" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
-          case 'Motion Sensor':
-            return <MaterialCommunityIcons name="motion-sensor" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
+          switch (route.name) {
+            case 'Camera':
+              return <Entypo name="camera" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
+            case 'Settings':
+              return <Ionicons name="settings" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
+            case 'Motion Sensor':
+              return <MaterialCommunityIcons name="motion-sensor" size={iconSize} color={iconColor} style={focused && styles.focusedIcon} />
+          }
+        },
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: colors.dark,
+          borderTopColor: 'transparent',
+        },
+        tabBarActiveBackgroundColor: colors.white,
+        tabBarInactiveBackgroundColor: colors.inActiveWhite,
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: colors.dark,
+        },
+        headerTitleStyle: {
+          color: colors.white,
         }
-      },
-      tabBarShowLabel: false,
-      tabBarStyle: {
-        backgroundColor: colors.dark,
-        borderTopColor: 'transparent',
-      },
-      tabBarActiveBackgroundColor: colors.white,
-      tabBarInactiveBackgroundColor: colors.inActiveWhite,
-      headerTitleAlign: 'center',
-      headerStyle: {
-        backgroundColor: colors.dark,
-      },
-      headerTitleStyle: {
-        color: colors.white,
-      }
-    })
-    } >
+      })
+      } >
       <Tab.Screen name="Camera" component={Camera} options={({ route }) => ({
         tabBarItemStyle: {
           borderTopLeftRadius: 20,
